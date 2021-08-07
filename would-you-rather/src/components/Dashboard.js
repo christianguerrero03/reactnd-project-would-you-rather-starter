@@ -24,10 +24,14 @@ class Dashboard extends Component {
     // let activeList = 'unans';
 
     let activeQuestionIds = questionIds.filter((id) => {
-      if (activeList === 'unans') {
-        return user.answers[id] ? null : id;
+      if (user) {
+        if (activeList === 'unans') {
+          return user.answers[id] ? null : id;
+        } else {
+          return user.answers[id] ? id : null;
+        }
       } else {
-        return user.answers[id] ? id : null;
+        return questionIds;
       }
     });
     console.log(activeQuestionIds);
@@ -63,7 +67,7 @@ class Dashboard extends Component {
         <ul className="dashboard-list">
           {activeQuestionIds.map((id) => (
             <li key={id}>
-              <Question id={id} />
+              <Question id={id} disableVote={true} />
             </li>
           ))}
         </ul>

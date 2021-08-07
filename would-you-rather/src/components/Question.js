@@ -31,7 +31,7 @@ class Question extends Component {
   };
 
   render() {
-    const { authedUser, question, users } = this.props;
+    const { authedUser, question, users, disableVote } = this.props;
 
     if (question === null) {
       return <p>This Question Doesn't exist</p>;
@@ -53,7 +53,10 @@ class Question extends Component {
     const totalVotes = optionOneVotes + optionTwoVotes;
 
     return (
-      <Link to={`/questions/${id}`} className="question center">
+      <Link
+        to={{ pathname: `/question/${id}`, state: { id } }}
+        className="question center"
+      >
         <div className="container">
           <div className="row">
             <div className="col">
@@ -74,7 +77,7 @@ class Question extends Component {
                 <button
                   className={`btn ${activeOne ? 'active' : ''}`}
                   onClick={(e) => this.handleVote('optionOne', active, e)}
-                  disabled={active}
+                  disabled={disableVote || active}
                 >
                   {optionOne.text}
                 </button>
@@ -87,7 +90,7 @@ class Question extends Component {
                 <button
                   className={`btn ${activeTwo ? 'active' : ''}`}
                   onClick={(e) => this.handleVote('optionTwo', active, e)}
-                  disabled={active}
+                  disabled={disableVote || active}
                 >
                   {optionTwo.text}
                 </button>

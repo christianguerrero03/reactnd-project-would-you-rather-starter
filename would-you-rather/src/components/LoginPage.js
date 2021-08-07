@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setAuthedUser } from '../actions/authedUser';
-import { useHistory, withRouter } from 'react-router-dom';
+import { Redirect, useLocation, withRouter } from 'react-router-dom';
 
 class LoginPage extends Component {
   state = {
@@ -9,9 +9,15 @@ class LoginPage extends Component {
   };
 
   render() {
-    const { dispatch, users, history } = this.props;
+    const { dispatch, authedUser, users, history, location } = this.props;
     const { selectedUser } = this.state;
+    const { state } = location;
+    console.log('state: ', location);
     // dispatch(setAuthedUser(selectedUser));
+
+    if (authedUser) {
+      return <Redirect to={state ? state.from : '/'} />;
+    }
 
     const handleSelect = (e) => {
       const selectedUser = e.target.value;
@@ -22,8 +28,6 @@ class LoginPage extends Component {
 
     const handleLogin = () => {
       dispatch(setAuthedUser(selectedUser));
-      // const history = useHistory();
-      history.push('/');
     };
 
     return (

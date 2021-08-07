@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Question from './Question';
+import { withRouter } from 'react-router-dom';
 
 class QuestionPage extends Component {
   render() {
@@ -23,6 +24,7 @@ class QuestionPage extends Component {
 }
 
 function mapStateToProps({ authedUser, questions, users }, props) {
+  console.log('QP props:', props);
   const { id } = props.match.params;
   return {
     id,
@@ -34,4 +36,4 @@ function mapStateToProps({ authedUser, questions, users }, props) {
   };
 }
 
-export default connect(mapStateToProps)(QuestionPage);
+export default withRouter(connect(mapStateToProps)(QuestionPage));

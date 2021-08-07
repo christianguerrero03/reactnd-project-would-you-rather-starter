@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { NavLink, withRouter } from 'react-router-dom';
+import { NavLink, Redirect, withRouter } from 'react-router-dom';
 import { setAuthedUser } from '../actions/authedUser';
 
 class Nav extends Component {
   handleLogout() {}
   render() {
-    const { dispatch, name, authedUser } = this.props;
+    const { dispatch, name, authedUser, history } = this.props;
 
     function handleLogout() {
       dispatch(setAuthedUser(null));
+      history.push('/login');
     }
 
     return (
@@ -31,18 +32,18 @@ class Nav extends Component {
             </NavLink>
           </li>
         </ul>
-        {authedUser && (
-          <div className="p-2 mx-4 nav-user">
+        <div className="p-2 mx-4 nav-user">
+          {authedUser && (
             <div className="mx-2 mt-1">
               <p>Hello {name}</p>
             </div>
-            <div className="mx-2">
-              <button className="login-button" onClick={handleLogout}>
-                Logout
-              </button>
-            </div>
+          )}
+          <div className="mx-2">
+            <button className="login-button" onClick={handleLogout}>
+              {authedUser ? 'Logout' : 'Login'}
+            </button>
           </div>
-        )}
+        </div>
       </nav>
     );
   }
