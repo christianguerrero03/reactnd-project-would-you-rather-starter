@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { formatDate, formatQuestion } from '../utils/helpers';
-import {
-  TiArrowBackOutline,
-  TiHeartOutline,
-  TiHeartFullOutline,
-} from 'react-icons/ti';
+import { formatDate } from '../utils/helpers';
 import { handleQuestionAnswer } from '../actions/questions';
 import { Link, withRouter } from 'react-router-dom';
 import { handleUserVote } from '../actions/users';
+import ErrorPage from './ErrorPage';
 
 class Question extends Component {
   handleVote = (answer, active, e) => {
@@ -33,8 +29,9 @@ class Question extends Component {
   render() {
     const { authedUser, question, users, disableVote } = this.props;
 
-    if (question === null) {
-      return <p>This Question Doesn't exist</p>;
+    if (!question) {
+      console.log('Q diesnt exist');
+      return <ErrorPage />;
     }
 
     const { author, timestamp, optionOne, optionTwo, id } = question;

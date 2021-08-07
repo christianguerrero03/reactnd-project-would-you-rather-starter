@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setAuthedUser } from '../actions/authedUser';
-import { Redirect, useLocation, withRouter } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 
 class LoginPage extends Component {
   state = {
@@ -9,11 +9,10 @@ class LoginPage extends Component {
   };
 
   render() {
-    const { dispatch, authedUser, users, history, location } = this.props;
+    const { dispatch, authedUser, users, location } = this.props;
     const { selectedUser } = this.state;
     const { state } = location;
     console.log('state: ', location);
-    // dispatch(setAuthedUser(selectedUser));
 
     if (authedUser) {
       return <Redirect to={state ? state.from : '/'} />;
@@ -46,36 +45,6 @@ class LoginPage extends Component {
             ))}
           </select>
         </div>
-
-        {/* <label>Username</label>
-        <input value={username} placeholder="Username"></input>
-        <label>Password</label>
-        <input value={password} placeholder="Password"></input> */}
-        {/* <div class="mb-3">
-          <label for="userInput" class="form-label">
-            Email address
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="userInput"
-            value={username}
-            placeholder="Username"
-            ref={(username) => (this.username = username)}
-          />
-        </div>
-        <div className="mb-3">
-          <label for="passInput" class="form-label">
-            Example textarea
-          </label>
-          <input
-            type="email"
-            className="form-control"
-            id="passInput"
-            value={password}
-            placeholder="Password"
-          />
-        </div>*/}
         <div>
           <button
             className="btn"

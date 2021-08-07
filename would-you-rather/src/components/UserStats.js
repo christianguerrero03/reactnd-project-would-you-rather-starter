@@ -1,20 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { formatDate, formatQuestion } from '../utils/helpers';
-import {
-  TiArrowBackOutline,
-  TiHeartOutline,
-  TiHeartFullOutline,
-} from 'react-icons/ti';
-import { handleQuestionAnswer } from '../actions/questions';
-import { Link, withRouter } from 'react-router-dom';
-import { handleUserVote } from '../actions/users';
+import { withRouter } from 'react-router-dom';
 
 class UserStats extends Component {
   render() {
-    const { authedUser, user } = this.props;
+    const { user } = this.props;
 
-    const { answers, avatarURL, id, name, questions } = user;
+    const { answers, avatarURL, name, questions } = user;
     const numAsked = questions.length;
     const numAnswered = Object.keys(answers).length;
 

@@ -55,7 +55,7 @@ class NewQuestion extends Component {
 
     return (
       <div>
-        <h3 className="center">Compose New Question</h3>
+        <h1 className="center">Compose New Question</h1>
         <form className="new-question" onSubmit={this.handleSubmit}>
           <textarea
             placeholder="Option One"
@@ -67,6 +67,7 @@ class NewQuestion extends Component {
           {charsLeftOne <= 100 && (
             <div className="question-length">{charsLeftOne}</div>
           )}
+          <h2 className="center">OR</h2>
           <textarea
             placeholder="Option Two"
             value={optionTwo}

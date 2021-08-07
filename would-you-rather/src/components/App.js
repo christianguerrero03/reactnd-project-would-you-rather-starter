@@ -1,10 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import {
-  BrowserRouter as Router,
-  Redirect,
-  Route,
-  withRouter,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { handleInitalData } from '../actions/shared';
 import Dashboard from './Dashboard';
@@ -59,22 +54,3 @@ function mapStateToProps({ authedUser }) {
 }
 
 export default connect(mapStateToProps)(App);
-
-// function PrivateRoute({ isAuthed, children, ...rest }) {
-//   console.log('isAuthed', isAuthed);
-//   console.log('children', children);
-
-//   return (
-//     <Route
-//       {...rest}
-//       render={({ location }) => {
-//         console.log('location: ', location);
-//         return isAuthed ? (
-//           children
-//         ) : (
-//           <Redirect to={{ pathname: '/login', state: { from: location } }} />
-//         );
-//       }}
-//     />
-//   );
-// }

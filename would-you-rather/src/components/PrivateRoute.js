@@ -1,10 +1,5 @@
-import React, { Component, Fragment } from 'react';
-import {
-  BrowserRouter as Router,
-  Redirect,
-  Route,
-  withRouter,
-} from 'react-router-dom';
+import React, { Component } from 'react';
+import { Redirect, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 class PrivateRoute extends Component {
@@ -29,19 +24,7 @@ class PrivateRoute extends Component {
 }
 
 function mapStateToProps({ authedUser, questions, users }, props) {
-  console.log('props: ', props);
-  // let id = null;
-  // if (props.match) {
-  //   id = props.match.params.id;
-  // }
-  return {
-    // id,
-    // replies: !questions[id]
-    //   ? []
-    //   : questions[id].replies.sort(
-    //       (a, b) => questions[b].timestamp - questions[a].timestamp
-    //     ),
-  };
+  return {};
 }
 
 export default withRouter(connect(mapStateToProps)(PrivateRoute));

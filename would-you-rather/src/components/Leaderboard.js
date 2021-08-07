@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Question from './Question';
-import { NavLink } from 'react-router-dom';
 import UserStats from './UserStats';
 
 class Leaderboard extends Component {
